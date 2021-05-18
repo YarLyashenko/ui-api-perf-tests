@@ -7,8 +7,8 @@ import lombok.Value;
 @Builder
 public class Credentials {
   public static final Credentials DEFAULT_USER =
-      Credentials.builder().email("f0Icfr1Czl@f0Icfr1Czl.com").password("DBleoMbTzc!1I")
-                 .firstname("MGrAlTMHiT").lastname("xHXdoRCVfe").build();
+      Credentials.builder().email("IuA8vp5hf2@IuA8vp5hf2.com").password("zFjN65ukEQ!1I")
+                 .firstname("jHkmKZywnu").lastname("aodSQCzALN").build();
 
   private String email;
   private String password;
@@ -17,6 +17,10 @@ public class Credentials {
 
   public String getContactData() {
     return String.format("%s %s\n%s", firstname, lastname, email);
+  }
+
+  public String getFullName() {
+    return String.format("%s %s", firstname, lastname);
   }
 
 }

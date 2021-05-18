@@ -3,6 +3,7 @@ package com.toptal.screening;
 import static com.codeborne.selenide.Selenide.open;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseTest {
   public static final int SYMBOLS_COUNT = 10;
-
 
   @BeforeAll
   public static void setUpAllure() {
@@ -30,6 +30,7 @@ public abstract class BaseTest {
   public void setUp() {
     Configuration.timeout = 10000;
     Configuration.startMaximized = true;
+    WebDriverRunner.clearBrowserCache();
     open(Url.BASE_URL);
   }
 }

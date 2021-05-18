@@ -1,5 +1,8 @@
 package com.toptal.screening;
 
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.toptal.screening.pages.AccountPage;
 import com.toptal.screening.pages.LoginPopup;
 import com.toptal.screening.pages.PageHeader;
@@ -26,9 +29,17 @@ public class RegisterTest extends BaseTest {
   public void registerFromMainPage() {
     PageHeader.clickLogin();
     LoginPopup.clickRegisterButton();
+
+    assertEquals(Url.REGISTER_URL, url(),
+        "Registration page should be opened.");
+
     RegisterPage.registerUser(credentials);
 
-    Assertions.assertEquals(credentials.getContactData(), AccountPage.getContactData(),
-        "Registration failed: user data incorrect");
+    Assertions.assertAll("Verify regisstration results:",
+        () -> assertEquals(credentials.getContactData(), AccountPage.getContactData(),
+            "Registration failed: user data incorrect."),
+        () -> assertEquals(Url.ACCOUNT_URL, url(),
+            "Registration should finish at user's account page."));
+
   }
 }

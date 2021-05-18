@@ -24,6 +24,7 @@ public class RegisterPage {
 
   public static void registerUser(Credentials credentials, boolean withNewsletter) {
     firstnameInput.shouldBe(Condition.visible)
+                  .scrollTo()
                   .setValue(credentials.getFirstname());
 
     lastnameInput.shouldBe(Condition.visible)
@@ -36,7 +37,6 @@ public class RegisterPage {
                  .setValue(credentials.getPassword());
 
     acceptTermsLabel.shouldBe(Condition.visible)
-                    .scrollTo()
                     .click();
     acceptTermsCheckbox.shouldBe(Condition.checked);
 
@@ -48,7 +48,7 @@ public class RegisterPage {
       newsletterCheckbox.shouldBe(Condition.not(Condition.checked));
     }
 
-    submitButton.shouldBe(Condition.enabled)
+    submitButton.shouldBe(Condition.visible, Condition.enabled)
                 .click();
   }
 }

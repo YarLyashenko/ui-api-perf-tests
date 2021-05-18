@@ -10,9 +10,20 @@ public class PageHeader {
   private static SelenideElement searchInput = $("input#search");
   private static SelenideElement searchButton = $("button.action.search");
   private static SelenideElement loginButton = $(".page-header .login-link a");
+  private static SelenideElement logoutButton = $(".page-header a.logout-link");
+  private static SelenideElement userName = $(".page-header .customer-name-text");
 
   public static void clickLogin() {
-    loginButton.shouldBe(Condition.enabled);
-    loginButton.click();
+    loginButton.shouldBe(Condition.visible, Condition.enabled)
+               .click();
+  }
+
+  public static void clickLogout() {
+    logoutButton.shouldBe(Condition.visible, Condition.enabled)
+                .click();
+  }
+
+  public static String getUserName() {
+    return userName.shouldBe(Condition.visible).text();
   }
 }
