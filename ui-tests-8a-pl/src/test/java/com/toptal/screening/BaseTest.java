@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseTest {
   public static final int SYMBOLS_COUNT = 10;
+  public static final String DEFAULT_SEARCH_VALUE_GLASSES = "Okulary";
+
 
   @BeforeAll
   public static void setUpAllure() {

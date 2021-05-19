@@ -26,4 +26,14 @@ public class PageHeader {
   public static String getUserName() {
     return userName.shouldBe(Condition.visible).text();
   }
+
+  public static void searchBy(String input) {
+
+    searchInput.shouldBe(Condition.visible, Condition.enabled)
+               .setValue(input)
+               .pressEnter();
+
+    //search button is disabled while autosuggestion list is open
+    //searchButton.shouldBe(Condition.visible).click();
+  }
 }
