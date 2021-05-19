@@ -27,6 +27,11 @@ public class CartPopup {
     return itemsInCartCount.shouldBe(Condition.visible).text();
   }
 
+  public static void clickCheckout() {
+    checkoutButton.shouldBe(Condition.visible, Condition.enabled)
+                  .click();
+  }
+
   //should scroll to element to get text loaded
   public static List<String> getNamesOfItemsInCart() {
     return cartItemsNames.stream()

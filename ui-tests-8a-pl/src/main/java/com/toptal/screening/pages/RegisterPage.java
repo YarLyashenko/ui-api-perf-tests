@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.toptal.screening.Credentials;
+import com.toptal.screening.CustomerData;
 
 public class RegisterPage {
 
@@ -18,11 +18,11 @@ public class RegisterPage {
   private static SelenideElement newsletterLabel = $(".newsletter label");
   private static SelenideElement submitButton = $("button.submit");
 
-  public static void registerUser(Credentials credentials) {
+  public static void registerUser(CustomerData credentials) {
     registerUser(credentials, false);
   }
 
-  public static void registerUser(Credentials credentials, boolean withNewsletter) {
+  public static void registerUser(CustomerData credentials, boolean withNewsletter) {
     firstnameInput.shouldBe(Condition.visible)
                   .scrollTo()
                   .setValue(credentials.getFirstname());

@@ -10,4 +10,5 @@ public class Constants {
   public static final String SCROLL_OPTIONS_SMOOTH =
       "{behavior: \"smooth\", block: \"end\", inline: \"end\"}";
 
+
 }

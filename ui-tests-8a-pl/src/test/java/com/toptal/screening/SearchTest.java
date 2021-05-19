@@ -3,8 +3,8 @@ package com.toptal.screening;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.toptal.screening.pages.FilterPanel;
+import com.toptal.screening.pages.HeaderPanel;
 import com.toptal.screening.pages.ItemsPage;
-import com.toptal.screening.pages.PageHeader;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class SearchTest extends BaseTest {
         "Producent", "Goggle",
         "Płeć", "Damskie");
 
-    PageHeader.searchBy(DEFAULT_SEARCH_VALUE_GLASSES);
+    HeaderPanel.searchBy(DEFAULT_SEARCH_VALUE_GLASSES);
 
     FilterPanel.shouldBeDisplayed();
     searchCriteria.forEach(FilterPanel::filterByValues);

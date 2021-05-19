@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-public class PageHeader {
+public class HeaderPanel {
 
   private static SelenideElement searchInput = $("input#search");
   private static SelenideElement searchButton = $("button.action.search");

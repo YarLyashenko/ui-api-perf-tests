@@ -4,8 +4,8 @@ import static com.codeborne.selenide.Selenide.back;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.toptal.screening.pages.CartPopup;
+import com.toptal.screening.pages.HeaderPanel;
 import com.toptal.screening.pages.ItemsPage;
-import com.toptal.screening.pages.PageHeader;
 import com.toptal.screening.pages.ProductPage;
 import com.toptal.screening.pages.RemoveFromCartConfirmationPopup;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class ShoppingCartTest extends BaseTest {
         addItemsToCart(DEFAULT_SEARCH_VALUE_GLASSES, RandomUtils.nextInt(2, 6));
 
     //open cart
-    PageHeader.openCartPopup();
+    HeaderPanel.openCartPopup();
 
     //verify total items count
     assertEquals(String.valueOf(expectedCartItems.size()), CartPopup.getAmountOfItemsInCart(),
@@ -48,7 +48,7 @@ public class ShoppingCartTest extends BaseTest {
         addItemsToCart(DEFAULT_SEARCH_VALUE_SHOVEL, amountAddedToCart);
 
     //open cart
-    PageHeader.openCartPopup();
+    HeaderPanel.openCartPopup();
 
     //remove few items
     for (int i = 0; i < cartItems.size() - amountLeftInCart; i++) {
@@ -73,7 +73,7 @@ public class ShoppingCartTest extends BaseTest {
   }
 
   private List<String> addItemsToCart(String searchRequest, int itemsCount) {
-    PageHeader.searchBy(searchRequest);
+    HeaderPanel.searchBy(searchRequest);
     List<String> addedItems = new ArrayList<>();
 
     for (int i = 0; i < itemsCount; i++) {

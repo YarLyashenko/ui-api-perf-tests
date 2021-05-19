@@ -6,7 +6,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementNotFound;
-import com.toptal.screening.Credentials;
+import com.toptal.screening.CustomerData;
 import lombok.SneakyThrows;
 
 public class LoginPopup {
@@ -18,7 +18,7 @@ public class LoginPopup {
   private static SelenideElement registerButton = popUp.$("a.action-register");
   private static SelenideElement errorMessage = popUp.$("div.message-error");
 
-  public static void performLogin(Credentials credentials) {
+  public static void performLogin(CustomerData credentials) {
     emailInput.shouldBe(Condition.visible)
               .setValue(credentials.getEmail());
 
