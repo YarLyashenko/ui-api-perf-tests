@@ -12,15 +12,24 @@ public class PageHeader {
   private static SelenideElement loginButton = $(".page-header .login-link a");
   private static SelenideElement logoutButton = $(".page-header a.logout-link");
   private static SelenideElement userName = $(".page-header .customer-name-text");
+  private static SelenideElement cartPopupButton = $("a.action.showcart");
 
   public static void clickLogin() {
     loginButton.shouldBe(Condition.visible, Condition.enabled)
+               .scrollTo()
                .click();
   }
 
   public static void clickLogout() {
     logoutButton.shouldBe(Condition.visible, Condition.enabled)
+                .scrollTo()
                 .click();
+  }
+
+  public static void openCartPopup() {
+    cartPopupButton.shouldBe(Condition.visible, Condition.enabled)
+                   .scrollTo()
+                   .click();
   }
 
   public static String getUserName() {

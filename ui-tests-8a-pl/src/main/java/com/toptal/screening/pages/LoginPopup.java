@@ -10,14 +10,13 @@ import com.toptal.screening.Credentials;
 import lombok.SneakyThrows;
 
 public class LoginPopup {
-  private static final String ACTIVE_POPUP_CSS_PREFIX = "aside._show ";
 
-  private static SelenideElement popUp = $(ACTIVE_POPUP_CSS_PREFIX);
-  private static SelenideElement emailInput = $(ACTIVE_POPUP_CSS_PREFIX + "input#email");
-  private static SelenideElement passwordInput = $(ACTIVE_POPUP_CSS_PREFIX + "input#pass");
-  private static SelenideElement loginButton = $(ACTIVE_POPUP_CSS_PREFIX + "button.action-login");
-  private static SelenideElement registerButton = $(ACTIVE_POPUP_CSS_PREFIX + "a.action-register");
-  private static SelenideElement errorMessage = $(ACTIVE_POPUP_CSS_PREFIX + "div.message-error");
+  private static SelenideElement popUp = $("aside._show ");
+  private static SelenideElement emailInput = popUp.$("input#email");
+  private static SelenideElement passwordInput = popUp.$("input#pass");
+  private static SelenideElement loginButton = popUp.$("button.action-login");
+  private static SelenideElement registerButton = popUp.$("a.action-register");
+  private static SelenideElement errorMessage = popUp.$("div.message-error");
 
   public static void performLogin(Credentials credentials) {
     emailInput.shouldBe(Condition.visible)
