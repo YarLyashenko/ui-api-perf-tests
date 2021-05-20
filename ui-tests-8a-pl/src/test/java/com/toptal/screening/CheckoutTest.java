@@ -8,12 +8,16 @@ import com.toptal.screening.pages.CheckoutPaymentPage;
 import com.toptal.screening.pages.HeaderPanel;
 import com.toptal.screening.pages.ItemsPage;
 import com.toptal.screening.pages.ProductPage;
+import io.qameta.allure.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CheckoutTest extends BaseTest {
 
   @Test
-  public void addSeveralItemsToCart() {
+  @DisplayName("Checkout process")
+  @Description("Add random item to cart and proceed with checkout up to payment")
+  public void checkoutFlow() {
 
     //search and add item to cart
     HeaderPanel.searchBy(DEFAULT_SEARCH_VALUE_SHOVEL);

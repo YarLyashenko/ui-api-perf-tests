@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.toptal.screening.Constants;
+import io.qameta.allure.Step;
 
 public class FilterPanel {
 
@@ -16,12 +18,15 @@ public class FilterPanel {
   private static ElementsCollection expandedFilterOptionList =
       $$(".filter-options-content[aria-hidden=false] li.item");
 
+  @Step("Open filtering tab {tabName}")
   public static void clickFilterTab(String tabName) {
     filterOptions.find(Condition.exactText(tabName))
+                 .scrollIntoView(Constants.SCROLL_OPTIONS)
                  .shouldBe(Condition.visible, Condition.enabled)
                  .click();
   }
 
+  @Step("Select values {filterValues} in filter tab {category}")
   public static void filterByValues(String category, String... filerValues) {
     clickFilterTab(category);
 
@@ -30,6 +35,7 @@ public class FilterPanel {
     for (String filterValue : filerValues) {
       panel.scrollTo();
       expandedFilterOptionList.find(Condition.exactText(filterValue))
+                              .scrollIntoView(Constants.SCROLL_OPTIONS)
                               .shouldBe(Condition.visible, Condition.enabled)
                               .click();
     }

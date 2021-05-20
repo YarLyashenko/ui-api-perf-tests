@@ -18,6 +18,7 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.7.1</junit.version>
         <aspectj.version>1.9.5</aspectj.version>
         <allure.version>2.13.9</allure.version>
@@ -55,6 +56,19 @@
                             <value>${project.build.directory}/allure-results</value>
                         </property>
                     </systemProperties>
+
+                    <systemPropertyVariables>
+                        <junit.jupiter.extensions.autodetection.enabled>true
+                        </junit.jupiter.extensions.autodetection.enabled>
+                        <selenide.browser>chrome</selenide.browser>
+                        <selenide.timeout>10000</selenide.timeout>
+                        <!--<selenide.baseUrl>http://localhost:8080/gui</selenide.baseUrl>-->
+                        <selenide.startMaximized>false</selenide.startMaximized>
+                        <selenide.fastSetValue>true</selenide.fastSetValue>
+                        <!--<selenide.browserSize>1920x1080</selenide.browserSize>-->
+                    </systemPropertyVariables>
+
+                    <trimStackTrace>false</trimStackTrace>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -68,6 +82,38 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>${allure-maven.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>auto-clean</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>build</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>allure-results</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
         </plugins>
     </build>

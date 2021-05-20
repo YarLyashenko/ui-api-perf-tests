@@ -6,6 +6,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.toptal.screening.Constants;
+import io.qameta.allure.Step;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.opentest4j.AssertionFailedError;
@@ -23,10 +24,18 @@ public class CartPopup {
   private static ElementsCollection cartItemsNames =
       miniCartPanel.$$(CART_ITEMS_CSS + " .product-item-name");
 
-  public static String getAmountOfItemsInCart() {
-    return itemsInCartCount.shouldBe(Condition.visible).text();
+  public static void verifyItemsCountInCart(int expectedCount) {
+    itemsInCartCount.shouldBe(
+        Condition.visible,
+        Condition.exactText(String.valueOf(expectedCount)));
+
   }
 
+  public static void waitCartToUpdate(int previousCartItemsCount) {
+    itemsInCartCount.shouldNotHave(Condition.exactText(String.valueOf(previousCartItemsCount)));
+  }
+
+  @Step("Click checkout button")
   public static void clickCheckout() {
     checkoutButton.shouldBe(Condition.visible, Condition.enabled)
                   .click();
@@ -41,6 +50,7 @@ public class CartPopup {
                          .collect(Collectors.toList());
   }
 
+  @Step("Click remove from cart on item {itemName}")
   public static void clickRemoveItemFromCart(String itemName) {
     getItemInCart(itemName).$(ITEM_REMOVE_CSS)
                            .scrollIntoView(Constants.SCROLL_OPTIONS)

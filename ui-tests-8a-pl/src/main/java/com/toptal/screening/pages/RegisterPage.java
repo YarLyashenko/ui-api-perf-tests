@@ -4,7 +4,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.toptal.screening.Constants;
 import com.toptal.screening.CustomerData;
+import io.qameta.allure.Step;
 
 public class RegisterPage {
 
@@ -22,6 +24,7 @@ public class RegisterPage {
     registerUser(credentials, false);
   }
 
+  @Step("Perform registration for user {credentials} with newsletter:{withNewsletter}")
   public static void registerUser(CustomerData credentials, boolean withNewsletter) {
     firstnameInput.shouldBe(Condition.visible)
                   .scrollTo()
@@ -48,7 +51,8 @@ public class RegisterPage {
       newsletterCheckbox.shouldBe(Condition.not(Condition.checked));
     }
 
-    submitButton.shouldBe(Condition.visible, Condition.enabled)
+    submitButton.scrollIntoView(Constants.SCROLL_OPTIONS)
+                .shouldBe(Condition.visible, Condition.enabled)
                 .click();
   }
 }

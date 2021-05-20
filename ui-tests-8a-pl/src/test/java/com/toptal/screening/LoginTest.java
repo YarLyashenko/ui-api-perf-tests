@@ -4,11 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.toptal.screening.pages.HeaderPanel;
 import com.toptal.screening.pages.LoginPopup;
+import io.qameta.allure.Description;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LoginTest extends BaseTest {
 
   @Test
+  @DisplayName("Login from main page")
+  @Description("Perform login from main page via pop-up")
   public void loginFromMainPage() {
     HeaderPanel.clickLogin();
 

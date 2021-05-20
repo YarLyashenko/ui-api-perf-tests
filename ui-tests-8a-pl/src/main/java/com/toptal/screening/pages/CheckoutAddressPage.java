@@ -4,8 +4,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.toptal.screening.Constants;
 import com.toptal.screening.CustomerData;
 import com.toptal.screening.ShippingMethod;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class CheckoutAddressPage {
@@ -25,22 +27,26 @@ public class CheckoutAddressPage {
   private static SelenideElement submitAddressButton =
       $("#shipping-method-buttons-container button[type='submit']");
 
-
+  @Step("Select shipping method {shippingMethod}")
   public static void selectShippingMethod(ShippingMethod shippingMethod) {
     submitAddressButton.scrollTo();
 
     shippingMethods
         .find(By.xpath(String.format(".//tr[.//input[@value='%s']]", shippingMethod.value)))
+        .scrollIntoView(Constants.SCROLL_OPTIONS)
         .shouldBe(Condition.visible, Condition.enabled)
         .click();
   }
 
+  @Step("Click submit button on checkout page with address")
   public static void clickSubmitAddressButton() {
-    submitAddressButton.scrollTo()
+    submitAddressButton.scrollIntoView(Constants.SCROLL_OPTIONS)
+
                        .shouldBe(Condition.visible, Condition.enabled)
                        .click();
   }
 
+  @Step("Fill customer and shipping details for customer: {customerData}")
   public static void fillCustomerData(CustomerData customerData) {
     emailInput.shouldBe(Condition.visible).setValue(customerData.getEmail());
     firstname.shouldBe(Condition.visible).setValue(customerData.getFirstname());

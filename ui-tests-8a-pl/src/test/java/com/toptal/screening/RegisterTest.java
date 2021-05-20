@@ -7,12 +7,16 @@ import com.toptal.screening.pages.AccountPage;
 import com.toptal.screening.pages.HeaderPanel;
 import com.toptal.screening.pages.LoginPopup;
 import com.toptal.screening.pages.RegisterPage;
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RegisterTest extends BaseTest {
 
   @Test
+  @DisplayName("Register from main page")
+  @Description("Register new customer from main page via pop-up")
   public void registerFromMainPage() {
     CustomerData credentials = CustomerData.generateRandomUser();
 
