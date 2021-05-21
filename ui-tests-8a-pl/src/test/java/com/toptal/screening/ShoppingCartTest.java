@@ -42,6 +42,7 @@ public class ShoppingCartTest extends BaseTest {
         "Items in cart are not the same as expected.");
   }
 
+
   @Test
   @DisplayName("Remove multiple items to cart")
   @Description("Add few items to cart and remove some of them, but not all")

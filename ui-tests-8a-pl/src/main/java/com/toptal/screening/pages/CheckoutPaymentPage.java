@@ -19,7 +19,8 @@ public class CheckoutPaymentPage {
                      .click();
   }
 
-  public static String getShippingInfo() {
-    return shippingInfo.shouldBe(Condition.visible).text();
+  @Step("Verify shipping info")
+  public static String verifyShippingInfo(String expectedText) {
+    return shippingInfo.shouldBe(Condition.visible, Condition.exactText(expectedText)).text();
   }
 }

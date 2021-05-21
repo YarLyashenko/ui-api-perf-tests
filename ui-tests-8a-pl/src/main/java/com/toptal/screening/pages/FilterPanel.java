@@ -27,12 +27,12 @@ public class FilterPanel {
   }
 
   @Step("Select values {filterValues} in filter tab {category}")
-  public static void filterByValues(String category, String... filerValues) {
+  public static void filterByValues(String category, String... filterValues) {
     clickFilterTab(category);
 
     expandedFilterTitle.shouldBe(Condition.visible, Condition.exactText(category));
 
-    for (String filterValue : filerValues) {
+    for (String filterValue : filterValues) {
       panel.scrollTo();
       expandedFilterOptionList.find(Condition.exactText(filterValue))
                               .scrollIntoView(Constants.SCROLL_OPTIONS)

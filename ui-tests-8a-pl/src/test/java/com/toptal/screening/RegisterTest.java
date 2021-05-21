@@ -8,7 +8,6 @@ import com.toptal.screening.pages.HeaderPanel;
 import com.toptal.screening.pages.LoginPopup;
 import com.toptal.screening.pages.RegisterPage;
 import io.qameta.allure.Description;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +27,8 @@ public class RegisterTest extends BaseTest {
 
     RegisterPage.registerUser(credentials);
 
-    Assertions.assertAll("Verify registration results:",
-        () -> assertEquals(credentials.getContactData(), AccountPage.getContactData(),
-            "Registration failed: user data incorrect."),
-        () -> assertEquals(Url.ACCOUNT_URL, url(),
-            "Registration should finish at user's account page."));
+    AccountPage.verifyContactData(credentials.getContactData());
+    assertEquals(Url.ACCOUNT_URL, url(), "Registration should finish at user's account page.");
 
   }
 }

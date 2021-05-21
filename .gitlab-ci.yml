@@ -1,0 +1,74 @@
+#image: maven:3-openjdk-11-slim
+image: markhobson/maven-chrome:jdk-11
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_DRIVER: overlay2
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_CLI_OPTS: "--show-version"
+
+stages:
+  - build
+  - test
+  - report
+
+
+cache:
+  paths:
+    - $CI_PROJECT_DIR/.m2/repository
+
+
+build-ui:
+  stage: build
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    paths:
+      - $CI_PROJECT_DIR/.m2/repository
+  script:
+    - cd ui-tests-8a-pl
+    - pwd
+    - mvn $MAVEN_CLI_OPTS compile
+
+
+test-ui:
+  stage: test
+  allow_failure: true
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    paths:
+      - $CI_PROJECT_DIR/.m2/repository
+  script:
+    - cd ui-tests-8a-pl
+    - pwd
+    - mvn $MAVEN_CLI_OPTS clean test
+  artifacts:
+    name: "test results"
+    when: always
+    paths:
+      - ui-tests-8a-pl/target/
+    expire_in: 3 days
+
+
+save-allure-report:
+  stage: report
+  script:
+    - cd ui-tests-8a-pl
+    - pwd
+    - mvn allure:report
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - $CI_PROJECT_DIR/.m2/repository
+  dependencies:
+    - test-ui
+  artifacts:
+    name: "allure"
+    when: always
+    paths:
+      - ui-tests-8a-pl/target/site/allure-maven-plugin/
+    expire_in: 30 days

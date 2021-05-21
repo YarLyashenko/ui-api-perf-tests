@@ -1,7 +1,5 @@
 package com.toptal.screening;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.toptal.screening.pages.CartPopup;
 import com.toptal.screening.pages.CheckoutAddressPage;
 import com.toptal.screening.pages.CheckoutPaymentPage;
@@ -36,8 +34,7 @@ public class CheckoutTest extends BaseTest {
     CheckoutAddressPage.clickSubmitAddressButton();
 
     //verify shipping address
-    assertEquals(customer.getShippingInfo(), CheckoutPaymentPage.getShippingInfo(),
-        "Shipping address is not the same as submitted on checkout page.");
+    CheckoutPaymentPage.verifyShippingInfo(customer.getShippingInfo());
 
     //Submit order is disabled to not spam a real store with test orders
     //    CheckoutPaymentPage.clickSubmitOrderButton();

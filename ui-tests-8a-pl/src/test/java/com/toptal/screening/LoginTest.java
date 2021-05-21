@@ -1,7 +1,5 @@
 package com.toptal.screening;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.toptal.screening.pages.HeaderPanel;
 import com.toptal.screening.pages.LoginPopup;
 import io.qameta.allure.Description;
@@ -23,7 +21,6 @@ public class LoginTest extends BaseTest {
 
     LoginPopup.shouldBeNotVisible();
 
-    assertEquals(CustomerData.DEFAULT_USER.getFullName(), HeaderPanel.getUserName(),
-        "Displayed user's full name is incorrect.");
+    HeaderPanel.verifyCustomerName(CustomerData.DEFAULT_USER.getFullName());
   }
 }

@@ -29,6 +29,9 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <allure-maven.version>2.10.0</allure-maven.version>
         <lombok.version>1.18.20</lombok.version>
+        <testcontainers.version>1.15.3</testcontainers.version>
+        <jackson.version>2.8.11</jackson.version>
+        <logback-classic.version>1.2.3</logback-classic.version>
     </properties>
 
     <dependencies>
@@ -36,6 +39,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-simple.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
         </dependency>
     </dependencies>
 
@@ -46,7 +59,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
@@ -61,11 +73,10 @@
                         <junit.jupiter.extensions.autodetection.enabled>true
                         </junit.jupiter.extensions.autodetection.enabled>
                         <selenide.browser>chrome</selenide.browser>
-                        <selenide.timeout>10000</selenide.timeout>
-                        <!--<selenide.baseUrl>http://localhost:8080/gui</selenide.baseUrl>-->
-                        <selenide.startMaximized>false</selenide.startMaximized>
+                        <selenide.timeout>15000</selenide.timeout>
+                        <selenide.startMaximized>true</selenide.startMaximized>
                         <selenide.fastSetValue>true</selenide.fastSetValue>
-                        <!--<selenide.browserSize>1920x1080</selenide.browserSize>-->
+                        <selenide.browserSize>1920x1080</selenide.browserSize>
                     </systemPropertyVariables>
 
                     <trimStackTrace>false</trimStackTrace>

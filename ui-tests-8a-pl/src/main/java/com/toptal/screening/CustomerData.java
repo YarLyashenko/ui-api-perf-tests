@@ -31,14 +31,6 @@ public class CustomerData {
   private String postcode;
   private ShippingMethod shippingMethod;
 
-  public String getContactData() {
-    return String.format("%s %s\n%s", firstname, lastname, email);
-  }
-
-  public String getFullName() {
-    return String.format("%s %s", firstname, lastname);
-  }
-
   public static CustomerData generateRandomUser() {
     return CustomerData.builder()
                        .email(String.format("%1$s@%1$s.com", randomAlphanumeric(nextInt(6, 12))))
@@ -55,6 +47,14 @@ public class CustomerData {
                        .postcode(String.format("%s-%s", randomNumeric(2), randomNumeric(3)))
                        .shippingMethod(ShippingMethod.GLIWICE_STORE_PICKUP)
                        .build();
+  }
+
+  public String getContactData() {
+    return String.format("%s %s\n%s", firstname, lastname, email);
+  }
+
+  public String getFullName() {
+    return String.format("%s %s", firstname, lastname);
   }
 
   public String getShippingInfo() {

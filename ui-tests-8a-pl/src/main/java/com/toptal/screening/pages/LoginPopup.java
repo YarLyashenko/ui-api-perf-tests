@@ -31,6 +31,7 @@ public class LoginPopup {
                .click();
   }
 
+  @Step("Login popup should be opened")
   public static void shouldBeVisible() {
     popUp.shouldBe(Condition.visible);
   }

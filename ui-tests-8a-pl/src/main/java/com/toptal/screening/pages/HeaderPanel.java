@@ -16,6 +16,12 @@ public class HeaderPanel {
   private static SelenideElement cartPopupButton = $("a.action.showcart");
   private static SelenideElement allowCookies = $("#btn-cookie-allow");
 
+
+  public static void waitPageToLoad() {
+    searchInput.shouldBe(Condition.visible);
+    loginButton.shouldBe(Condition.visible);
+  }
+
   @Step("Click login")
   public static void clickLogin() {
     loginButton.shouldBe(Condition.visible, Condition.enabled)
@@ -24,9 +30,10 @@ public class HeaderPanel {
   }
 
   @Step("Allow cookies")
-  public static void clickAllowCookiesButton() {
-    allowCookies.shouldBe(Condition.visible, Condition.enabled)
-                .click();
+  public static void allowCookies() {
+    if (allowCookies.isDisplayed()) {
+      allowCookies.scrollTo().click();
+    }
   }
 
   @Step("Click logout")
@@ -43,8 +50,9 @@ public class HeaderPanel {
                    .click();
   }
 
-  public static String getUserName() {
-    return userName.shouldBe(Condition.visible).text();
+  @Step("Verify user name")
+  public static void verifyCustomerName(String expectedName) {
+    userName.shouldBe(Condition.visible, Condition.exactText(expectedName));
   }
 
   @Step("Perform product search by {input}")
