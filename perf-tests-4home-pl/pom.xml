@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.toptal.screening</groupId>
+        <artifactId>iaroslav.liashenko</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+
+    <artifactId>perf-tests-4home-pl</artifactId>
+    <name>Performance tests for 4home.pl</name>
+
+    <properties>
+        <jmeter-maven-plugin.version>3.4.0</jmeter-maven-plugin.version>
+
+        <BUILD_TAG>${project.version}</BUILD_TAG>
+        <base.url>www.4home.pl</base.url>
+        <protocol>https</protocol>
+        <port>443</port>
+        <connect.timeout>30000</connect.timeout>
+        <response.timeout>60000</response.timeout>
+        <thread.name>4home</thread.name>
+        <thread.number>1000</thread.number>
+        <rampup>0</rampup>
+        <startup.delay>2</startup.delay>
+        <test.duration>15</test.duration>
+        <target.rpm>4000</target.rpm>
+        <html.report>true</html.report>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>${jmeter-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>configuration</id>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tests</id>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check-results</id>
+                        <goals>
+                            <goal>results</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <propertiesUser>
+                        <base.url>${base.url}</base.url>
+                        <app.protocol>${protocol}</app.protocol>
+                        <app.port>${port}</app.port>
+                        <connect.timeout>${connect.timeout}</connect.timeout>
+                        <response.timeout>${response.timeout}</response.timeout>
+                        <thread.name>${thread.name}</thread.name>
+                        <thread.number>${thread.number}</thread.number>
+                        <rampup>${rampup}</rampup>
+                        <startup.delay>${startup.delay}</startup.delay>
+                        <test.duration>${test.duration}</test.duration>
+                        <target.rpm>${target.rpm}</target.rpm>
+                        <jmeter.reportgenerator.report_title>Toptal screening</jmeter.reportgenerator.report_title>
+                        <jmeter.reportgenerator.overall_granularity>1000</jmeter.reportgenerator.overall_granularity>
+                        <jmeter.reportgenerator.apdex_satisfied_threshold>1000
+                        </jmeter.reportgenerator.apdex_satisfied_threshold>
+                        <jmeter.reportgenerator.apdex_tolerated_threshold>5000
+                        </jmeter.reportgenerator.apdex_tolerated_threshold>
+                    </propertiesUser>
+                    <jMeterProcessJVMSettings>
+                        <xms>3584</xms>
+                        <xmx>3584</xmx>
+                        <arguments>
+                            <argument>-XX:MaxMetaspaceSize=768m</argument>
+                        </arguments>
+                    </jMeterProcessJVMSettings>
+
+                    <resultsFileFormat>xml</resultsFileFormat>
+                    <ignoreResultFailures>true</ignoreResultFailures>
+                    <generateReports>${html.report}</generateReports>
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -13,13 +13,17 @@
     <modules>
         <module>ui-tests-8a-pl</module>
         <module>api-tests-cartes-io</module>
+        <module>perf-tests-4home-pl</module>
     </modules>
 
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
         <junit.version>5.7.1</junit.version>
         <aspectj.version>1.9.5</aspectj.version>
         <allure.version>2.13.9</allure.version>
