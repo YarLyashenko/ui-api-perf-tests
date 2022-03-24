@@ -21,25 +21,25 @@ public abstract class BaseTest {
 
   public static final String DEFAULT_SEARCH_VALUE_GLASSES = "okulary";
   public static final String DEFAULT_SEARCH_VALUE_SHOVEL = "łopata";
-
-  static final BrowserWebDriverContainer browser;
-
-  static {
-    final ChromeOptions capabilities = new ChromeOptions();
-    capabilities.addArguments("headless")
-                .addArguments("disable-gpu")
-                .addArguments("no-sandbox")
-                .addArguments("disable-dev-shm-usage")
-                .addArguments("window-size=1920,1080");
-
-    browser = new BrowserWebDriverContainer().withCapabilities(capabilities);
-    browser.start();
-  }
+//
+//  static final BrowserWebDriverContainer browser;
+//
+//  static {
+//    final ChromeOptions capabilities = new ChromeOptions();
+//    capabilities.addArguments("headless")
+//                .addArguments("disable-gpu")
+//                .addArguments("no-sandbox")
+//                .addArguments("disable-dev-shm-usage")
+//                .addArguments("window-size=1920,1080");
+//
+//    browser = new BrowserWebDriverContainer().withCapabilities(capabilities);
+//    browser.start();
+//  }
 
   @BeforeAll
   public static void setUpDriverAndAllure() {
-    RemoteWebDriver driver = browser.getWebDriver();
-    WebDriverRunner.setWebDriver(driver);
+//    RemoteWebDriver driver = browser.getWebDriver();
+//    WebDriverRunner.setWebDriver(driver);
     SelenideLogger.addListener("allure", new AllureSelenide());
   }
 

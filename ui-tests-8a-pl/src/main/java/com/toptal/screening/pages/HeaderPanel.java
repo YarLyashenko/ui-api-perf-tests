@@ -16,7 +16,7 @@ public class HeaderPanel {
   private static SelenideElement cartPopupButton = $("a.action.showcart");
   private static SelenideElement allowCookies = $("#btn-cookie-allow");
 
-
+  @Step("Wait header to load")
   public static void waitPageToLoad() {
     searchInput.shouldBe(Condition.visible);
     loginButton.shouldBe(Condition.visible);

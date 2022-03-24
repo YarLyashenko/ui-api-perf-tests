@@ -24,6 +24,7 @@ public class CartPopup {
   private static ElementsCollection cartItemsNames =
       miniCartPanel.$$(CART_ITEMS_CSS + " .product-item-name");
 
+  @Step("Verify amount of items in cart")
   public static void verifyItemsCountInCart(int expectedCount) {
     itemsInCartCount.shouldBe(
         Condition.visible,
@@ -31,6 +32,7 @@ public class CartPopup {
 
   }
 
+  @Step("Wait cart to update")
   public static void waitCartToUpdate(int previousCartItemsCount) {
     itemsInCartCount.shouldNotHave(Condition.exactText(String.valueOf(previousCartItemsCount)));
   }
@@ -42,6 +44,7 @@ public class CartPopup {
   }
 
   //should scroll to element to get text loaded
+  @Step("Scroll thru all items in cart")
   public static List<String> getNamesOfItemsInCart() {
     return cartItemsNames.stream()
                          .map(e -> e.scrollIntoView(Constants.SCROLL_OPTIONS)

@@ -36,6 +36,7 @@ public class LoginPopup {
     popUp.shouldBe(Condition.visible);
   }
 
+  @Step("Login popup should be closed")
   public static void shouldBeNotVisible() {
     popUp.shouldBe(Condition.not(Condition.visible));
   }

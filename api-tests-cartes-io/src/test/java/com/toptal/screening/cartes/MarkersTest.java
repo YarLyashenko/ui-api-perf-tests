@@ -1,6 +1,5 @@
 package com.toptal.screening.cartes;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import com.toptal.screening.cartes.dto.map.MapResponse;
@@ -12,6 +11,7 @@ import java.util.UUID;
 import lombok.val;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.http.HttpStatus;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ class MarkersTest {
     val errorResponse =
         CartesService.sendNotAllowedMarkersRequest(method, mapResponse.uuid());
 
-    assertThat(errorResponse.message()).isEqualTo("The " + method +
+    Assertions.assertThat(errorResponse.message()).isEqualTo("The " + method +
         " method is not supported for this route. Supported methods: GET, HEAD, POST.");
   }
 
@@ -63,14 +63,14 @@ class MarkersTest {
             HttpStatus.SC_UNPROCESSABLE_ENTITY);
 
     assertAll("Verification of marker response",
-        () -> assertThat(markerResponse.message()).isEqualTo("The given data was invalid."),
-        () -> assertThat(markerResponse.errors().category().get(0))
+        () -> Assertions.assertThat(markerResponse.message()).isEqualTo("The given data was invalid."),
+        () -> Assertions.assertThat(markerResponse.errors().category().get(0))
             .isEqualTo("The category field is required when category name is not present."),
-        () -> assertThat(markerResponse.errors().latitude().get(0))
+        () -> Assertions.assertThat(markerResponse.errors().latitude().get(0))
             .isEqualTo("The lat field is required."),
-        () -> assertThat(markerResponse.errors().longitude().get(0))
+        () -> Assertions.assertThat(markerResponse.errors().longitude().get(0))
             .isEqualTo("The lng field is required."),
-        () -> assertThat(markerResponse.errors().categoryName().get(0))
+        () -> Assertions.assertThat(markerResponse.errors().categoryName().get(0))
             .isEqualTo("The category name field is required when category is not present."));
 
   }
@@ -84,24 +84,24 @@ class MarkersTest {
     val markerResponse =
         CartesService.createMarker(mapId, markerRequest, HttpStatus.SC_NOT_FOUND);
 
-    assertThat(markerResponse.message())
+    Assertions.assertThat(markerResponse.message())
         .isEqualTo("No query results for model [App\\Models\\Map] " + mapId);
   }
 
   @Step("Verify response for marker request")
   private void verifyMarkerResponse(MarkerRequest request, MarkerResponse response) {
     assertAll("Verification of marker response",
-        () -> assertThat(response.updatedAt()).isNotEmpty(),
-        () -> assertThat(response.createdAt()).isNotEmpty(),
-        () -> assertThat(response.description()).isEqualTo(request.description()),
-        () -> assertThat(response.category()).isNotNull(),
-        () -> assertThat(response.category().name()).isEqualTo(request.categoryName()),
-        () -> assertThat(response.category().id()).isGreaterThan(0),
-        () -> assertThat(response.category().icon()).isNotEmpty(),
-        () -> assertThat(response.location()).isNotNull(),
-        () -> assertThat(response.location().coordinates()).isNotEmpty(),
-        () -> assertThat(response.location().coordinates().get(0)).isEqualTo(request.latitude()),
-        () -> assertThat(response.location().coordinates().get(1)).isEqualTo(request.longitude()));
+        () -> Assertions.assertThat(response.updatedAt()).isNotEmpty(),
+        () -> Assertions.assertThat(response.createdAt()).isNotEmpty(),
+        () -> Assertions.assertThat(response.description()).isEqualTo(request.description()),
+        () -> Assertions.assertThat(response.category()).isNotNull(),
+        () -> Assertions.assertThat(response.category().name()).isEqualTo(request.categoryName()),
+        () -> Assertions.assertThat(response.category().id()).isGreaterThan(0),
+        () -> Assertions.assertThat(response.category().icon()).isNotEmpty(),
+        () -> Assertions.assertThat(response.location()).isNotNull(),
+        () -> Assertions.assertThat(response.location().coordinates()).isNotEmpty(),
+        () -> Assertions.assertThat(response.location().coordinates().get(0)).isEqualTo(request.latitude()),
+        () -> Assertions.assertThat(response.location().coordinates().get(1)).isEqualTo(request.longitude()));
   }
 
 
@@ -129,14 +129,14 @@ class MarkersTest {
         createdMarker.id(), updateRequest, HttpStatus.SC_UNPROCESSABLE_ENTITY);
 
     assertAll("Verification of marker response",
-        () -> assertThat(markerResponse.message()).isEqualTo("The given data was invalid."),
-        () -> assertThat(markerResponse.errors().category().get(0))
+        () -> Assertions.assertThat(markerResponse.message()).isEqualTo("The given data was invalid."),
+        () -> Assertions.assertThat(markerResponse.errors().category().get(0))
             .isEqualTo("The category field is required when category name is not present."),
-        () -> assertThat(markerResponse.errors().latitude().get(0))
+        () -> Assertions.assertThat(markerResponse.errors().latitude().get(0))
             .isEqualTo("The lat field is required."),
-        () -> assertThat(markerResponse.errors().longitude().get(0))
+        () -> Assertions.assertThat(markerResponse.errors().longitude().get(0))
             .isEqualTo("The lng field is required."),
-        () -> assertThat(markerResponse.errors().categoryName().get(0))
+        () -> Assertions.assertThat(markerResponse.errors().categoryName().get(0))
             .isEqualTo("The category name field is required when category is not present."));
   }
 
@@ -149,7 +149,7 @@ class MarkersTest {
     val markerResponse = CartesService
         .updateMarker(mapResponse.uuid(), markerId, updateRequest, HttpStatus.SC_NOT_FOUND);
 
-    assertThat(markerResponse.message())
+    Assertions.assertThat(markerResponse.message())
         .isEqualTo("No query results for model [App\\Models\\Marker] " + markerId);
   }
 

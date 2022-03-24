@@ -43,6 +43,7 @@ public class FilterPanel {
     expandedFilterTitle.should(Condition.not(Condition.exist));
   }
 
+  @Step("Verify filter panel is displayed")
   public static void shouldBeDisplayed() {
     panel.shouldBe(Condition.visible);
   }

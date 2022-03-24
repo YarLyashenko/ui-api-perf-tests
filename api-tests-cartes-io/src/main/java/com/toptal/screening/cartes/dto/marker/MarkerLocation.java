@@ -13,6 +13,7 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class MarkerLocation {
 
+
   @JsonProperty("coordinates")
   private List<Double> coordinates;
 
