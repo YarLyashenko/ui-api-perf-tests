@@ -1,6 +1,6 @@
 # Test Cases
 
-### Test case 1: [Login](src/test/java/com/toptal/screening/LoginTest.java)
+### Test case 1: [Login](src/test/java/com/screening/LoginTest.java)
 
 1. Open main page.
 2. Click Login button on the header.
@@ -10,7 +10,7 @@
 5. Login popup disappeared.
 6. User logged in. User's name is displayed on the header.
 
-### Test case 2: [Registration](src/test/java/com/toptal/screening/RegisterTest.java)
+### Test case 2: [Registration](src/test/java/com/screening/RegisterTest.java)
 
 1. Open main page.
 2. Click Login button on the header.
@@ -19,7 +19,7 @@
 3. Fill all required fields and click Register button.
 3. Account Details page is opened with saved user's data provided during registration.
 
-### Test case 3: [Search](src/test/java/com/toptal/screening/SearchTest.java)
+### Test case 3: [Search](src/test/java/com/screening/SearchTest.java)
 
 1. Open main page.
 2. Fill search field with some category(i.e.`okulary`) and perform search.
@@ -32,7 +32,7 @@
    Płeć | Unisex
 3. Verify all three criteria are displayed at the top of the result page.
 
-### Test case 4: [Shopping Cart: add items](src/test/java/com/toptal/screening/ShoppingCartTest.java)
+### Test case 4: [Shopping Cart: add items](src/test/java/com/screening/ShoppingCartTest.java)
 
 1. Open main page.
 2. Fill search field with some category(i.e.`okulary`) and perform search.
@@ -44,7 +44,7 @@
 3. Open mini cart by clicking on cart icon on the header section of the page.
 4. Verify all added in #3 items are displayed in a cart.
 
-### Test case 5: [Shopping Cart: remove items](src/test/java/com/toptal/screening/ShoppingCartTest.java)
+### Test case 5: [Shopping Cart: remove items](src/test/java/com/screening/ShoppingCartTest.java)
 
 1. Open main page.
 2. Fill search field with some category(i.e.`okulary`) and perform search.
@@ -59,7 +59,7 @@
    1. Click accept on confirmation popup.
 4. Verify requested items are removed from cart.
 
-### Test case 6: [Checkout](src/test/java/com/toptal/screening/CheckoutTest.java)
+### Test case 6: [Checkout](src/test/java/com/screening/CheckoutTest.java)
 
 1. Open main page.
 2. Fill search field with some category(i.e.`okulary`) and perform search.

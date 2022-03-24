@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.toptal.screening</groupId>
+        <groupId>com.screening</groupId>
         <artifactId>iaroslav.liashenko</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -71,7 +71,7 @@
                         <startup.delay>${startup.delay}</startup.delay>
                         <test.duration>${test.duration}</test.duration>
                         <target.rpm>${target.rpm}</target.rpm>
-                        <jmeter.reportgenerator.report_title>Toptal screening</jmeter.reportgenerator.report_title>
+                        <jmeter.reportgenerator.report_title>screening</jmeter.reportgenerator.report_title>
                         <jmeter.reportgenerator.overall_granularity>1000</jmeter.reportgenerator.overall_granularity>
                         <jmeter.reportgenerator.apdex_satisfied_threshold>1000
                         </jmeter.reportgenerator.apdex_satisfied_threshold>

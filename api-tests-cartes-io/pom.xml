@@ -14,7 +14,7 @@
     </properties>
 
     <parent>
-        <groupId>com.toptal.screening</groupId>
+        <groupId>com.screening</groupId>
         <artifactId>iaroslav.liashenko</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>

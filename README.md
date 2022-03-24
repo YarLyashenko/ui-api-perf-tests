@@ -1,4 +1,4 @@
-# Screening project for Toptal
+# Screening project
 
 ___
 
